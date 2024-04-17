@@ -29,7 +29,7 @@
                         <th scope="col">Ajouter 1 au panier</th>
 
                     </tr>
-                    <c:forEach items="${requestScope.CART_USER.articlesKeep}" var="entry">
+                    <c:forEach items="${sessionScope.CART_USER.articlesKeep}" var="entry">
                         <tr>
                             <td>${entry.key.name}</td>
                             <td>${entry.key.price}</td>
