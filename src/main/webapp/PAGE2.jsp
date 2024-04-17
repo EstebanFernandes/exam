@@ -6,6 +6,7 @@
         <head>
             <meta charset="UTF-8">
             <title>Articles</title>
+            <jsp:include page="HEADER.jsp"/>
         </head>
 
         <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
@@ -14,7 +15,7 @@
 
             <fieldset
                 style="border: 1px solid #ccc; border-radius: 8px; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-                <legend style="font-weight: bold; color: #333;">Bonjour ${sessionScope.CART_USER.currentuser.name}
+                <legend style="font-weight: bold; color: #333;">Articles
                 </legend>
                 <table style="width: 100%; border-collapse: collapse;">
                     <thead>
@@ -59,10 +60,6 @@
                     <button
                         style="padding: 10px 20px; background-color: #007bff; color: #fff; border: none; border-radius: 6px; cursor: pointer;">Afficher
                         le panier</button>
-                </form>
-                <form action="articles" method="get" style="display: inline-block;">
-                    <button
-                        style="padding: 10px 20px; background-color: #ccc; color: #333; border: none; border-radius: 4px; cursor: pointer;">Retour</button>
                 </form>
             </div>
 

@@ -28,12 +28,16 @@ public class CartBean implements Serializable {
         this.articlesKeep = articlesKeep;
     }
 
-    public UserBean getCurrentUser() {
+
+
+   
+
+    public UserBean getCurrentuser() {
         return currentuser;
     }
 
-    public void setUser(UserBean user) {
-        currentuser = user;
+    public void setCurrentuser(UserBean currentuser) {
+        this.currentuser = currentuser;
     }
 
     public Integer getNbById(int id) {

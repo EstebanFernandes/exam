@@ -27,8 +27,7 @@ public class DisplayArticlesServlet extends HttpServlet {
             throws ServletException, IOException {
         CartBean cart = (CartBean) request.getSession().getAttribute("CART_USER");
         if (cart == null) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("connexion");
-            dispatcher.forward(request, response);
+            response.sendRedirect("connexion");
         } else {
             if (cart.getArticlesKeep().size() == 0) {
                 List<ArticleBean> temp = articleDAO.getArticlesList();

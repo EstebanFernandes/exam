@@ -65,4 +65,17 @@ public class StoreBusinessImpl implements StoreBusiness {
         }
     }
 
+    @Override
+    public void deconnexion(CartBean cart) {
+        for(var entry : cart.getArticlesKeep().entrySet())
+        {
+            for(int i=0;i<entry.getValue();i++)
+            {
+                removeOneArticle(cart, entry.getKey().getId());
+            }
+        }
+        cart= null;
+
+    }
+
 }

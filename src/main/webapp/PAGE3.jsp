@@ -6,6 +6,7 @@
         <head>
             <meta charset="UTF-8">
             <title>Panier</title>
+            <jsp:include page="HEADER.jsp"/>
         </head>
 
         <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
