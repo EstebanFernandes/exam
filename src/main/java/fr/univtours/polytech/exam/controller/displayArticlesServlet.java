@@ -28,12 +28,13 @@ public class DisplayArticlesServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("connexion");
             dispatcher.forward(request, response);
         } else {
-            List<ArticleBean> temp = articleDAO.getArticlesList();
-            for (ArticleBean article : temp) {
-                cart.getArticlesKeep().put(article, 0);
-                System.out.println(article.getName());
+            if (cart.getArticlesKeep().size() == 0) {
+                List<ArticleBean> temp = articleDAO.getArticlesList();
+                for (ArticleBean article : temp) {
+                    cart.getArticlesKeep().put(article, 0);
+                    System.out.println(article.getName());
+                }
             }
-            request.getSession().setAttribute("CART_USER",cart);
             RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE2.jsp");
             dispatcher.forward(request, response);
         }
@@ -42,7 +43,7 @@ public class DisplayArticlesServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                CartBean cart = (CartBean) request.getSession().getAttribute("CART_USER");
+        CartBean cart = (CartBean) request.getSession().getAttribute("CART_USER");
         if (cart == null) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE1.jsp");
             dispatcher.forward(request, response);

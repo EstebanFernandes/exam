@@ -21,12 +21,11 @@ public class ArticleDAOImpl implements ArticleDAO {
 
     @Override
     public void updateArticle(ArticleBean article) {
-
-        em.getTransaction().begin();
-        ArticleBean articleToUpdate = em.find(ArticleBean.class, article.getId());
-        articleToUpdate = article;
-        em.getTransaction().commit();
-        em.close();
+        Query query = em.createQuery(
+      "UPDATE ARTICLE SET nbRestant = :nb , price = :pr, name = :na " +
+      "WHERE id = :id");
+  int updateCount = query.setParameter("nb",article.getNbRestant()).setParameter("pr", article.getPrice())
+  .setParameter("na", article.getName()).setParameter("id", article.getId()).executeUpdate();
     }
 
     @Override

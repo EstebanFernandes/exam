@@ -4,10 +4,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class CartBean implements Serializable {
     // Cette map nous permet d'associer un id d'article à une quantité
-    private Map<ArticleBean, Integer> articlesKeep = new HashMap<ArticleBean,Integer>();
+    private Map<ArticleBean, Integer> articlesKeep = new HashMap<ArticleBean, Integer>();
     // On garde aussi l'id de l'utilisateur
     private UserBean currentUser;
     // Le prix total du panier
@@ -35,6 +34,21 @@ public class CartBean implements Serializable {
 
     public void setIdUser(UserBean user) {
         currentUser = user;
+    }
+
+    public Integer getNbById(int id) {
+        for (var entry : articlesKeep.entrySet()) {
+            if (entry.getKey().getId() == id)
+                return entry.getValue();
+        }
+        return null;
+    }
+    public void setNbById(int id,int nb)
+    {
+        for (var entry : articlesKeep.entrySet()) {
+            if (entry.getKey().getId() == id)
+                entry.setValue(nb);
+        }
     }
 
 }
