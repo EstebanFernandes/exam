@@ -38,7 +38,7 @@ public class ConnexionServlet extends HttpServlet {
 
         } else {
             request.setAttribute("notConnected", true);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE1.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("connexion");
             dispatcher.forward(request, response);
         }
     }
