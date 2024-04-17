@@ -1,12 +1,13 @@
 package fr.univtours.polytech.exam.model;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
 
 public class CartBean implements Serializable {
     // Cette map nous permet d'associer un id d'article à une quantité
-    private Map<ArticleBean, Integer> articlesKeep;
+    private Map<ArticleBean, Integer> articlesKeep = new HashMap<ArticleBean,Integer>();
     // On garde aussi l'id de l'utilisateur
     private UserBean currentUser;
     // Le prix total du panier

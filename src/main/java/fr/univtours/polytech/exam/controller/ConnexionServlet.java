@@ -32,7 +32,7 @@ public class ConnexionServlet extends HttpServlet {
         if (!userDAO.checkUser(login, password)) {
             HttpSession mySession = request.getSession();
             mySession.setAttribute("CART_USER",cart);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE2.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("articles");
             dispatcher.forward(request, response);
 
         } else {
