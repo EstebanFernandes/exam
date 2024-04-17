@@ -34,5 +34,5 @@ public class CartBean implements Serializable {
     public void setIdUser(UserBean user) {
         currentUser = user;
     }
-
+    
 }

@@ -1,6 +1,7 @@
 package fr.univtours.polytech.exam.business;
 
 import java.util.List;
+import java.util.Map;
 
 import fr.univtours.polytech.exam.dao.ArticleDAO;
 import fr.univtours.polytech.exam.dao.UserDAO;
@@ -17,33 +18,45 @@ public class StoreBusinessImpl implements StoreBusiness {
 
     @Override
     public boolean addOneArticle(CartBean cart, int idArticle) {
-        Integer id = idArticle;
-        if (cart.getArticlesKeep().get(id) != null) {
-            // Si l'article est présent, on doit regarder si on peut ajouter, donc s'il
-            // reste
-
-        } else {
-            cart.getArticlesKeep().put(id, 1);
+        ArticleBean article = articleDAO.getArticle(idArticle);
+        // Ensuite on regarde s'il reste des articles en stock
+        if (article.getNbRestant() >= 1) {
+            Integer value = cart.getArticlesKeep().get(article);
+            cart.getArticlesKeep().put(article, value + 1);
+            article.setNbRestant(article.getNbRestant() - 1);
+            articleDAO.updateArticle(article);
+            return true;
         }
         return false;
     }
 
     @Override
     public boolean removeOneArticle(CartBean cart, int idArticle) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeOneArticle'");
+        ArticleBean article = articleDAO.getArticle(idArticle);
+        if (!cart.getArticlesKeep().containsKey(article)) {
+            return false;
+        }
+        Integer value = cart.getArticlesKeep().get(article);
+        cart.getArticlesKeep().put(article, value + 1);
+        article.setNbRestant(article.getNbRestant() - 1);
+        articleDAO.updateArticle(article);
+        return true;
     }
 
     @Override
     public List<ArticleBean> getArticleList() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getArticleList'");
+        return articleDAO.getArticlesList();
     }
 
     @Override
     public CartBean computeTotalPrice(CartBean cart) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'computeTotalPrice'");
+        // On itère sur la map, la clé correspond à l'id de l'article, la valeur
+        // correspond à la quantité
+        for (Map.Entry<ArticleBean, Integer> entry : cart.getArticlesKeep().entrySet()) {
+            float price = entry.getKey().getPrice().floatValue() * (float) entry.getValue();
+            cart.setTotalPrice(cart.getTotalPrice() + price);
+        }
+        return cart;
     }
 
 }

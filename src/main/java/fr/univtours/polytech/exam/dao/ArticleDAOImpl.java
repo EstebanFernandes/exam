@@ -29,4 +29,9 @@ public class ArticleDAOImpl implements ArticleDAO {
         em.close();
     }
 
+    @Override
+    public ArticleBean getArticle(int id) {
+        return em.find(ArticleBean.class, id);
+    }
+
 }
