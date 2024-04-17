@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import fr.univtours.polytech.exam.dao.ArticleDAO;
-import fr.univtours.polytech.exam.dao.UserDAO;
 import fr.univtours.polytech.exam.model.ArticleBean;
 import fr.univtours.polytech.exam.model.CartBean;
 import jakarta.inject.Inject;
@@ -13,8 +12,6 @@ public class StoreBusinessImpl implements StoreBusiness {
 
     @Inject
     private ArticleDAO articleDAO;
-    @Inject
-    private UserDAO userDAO;
 
     @Override
     public boolean addOneArticle(CartBean cart, int idArticle) {
