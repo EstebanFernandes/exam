@@ -14,15 +14,6 @@ public class CartBean implements Serializable {
     // Le prix total du panier
     private float TotalPrice;
 
-    public CartBean(){
-        ArticleDAO articles = new ArticleDAOImpl();
-        for(ArticleBean article : articles.getArticlesList())
-        {
-            articlesKeep.put(article,0);
-        }
-        currentUser=null;
-        TotalPrice = 0;
-    }
     public float getTotalPrice() {
         return TotalPrice;
     }
