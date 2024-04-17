@@ -13,5 +13,6 @@ public interface StoreBusiness {
     public List<ArticleBean> getArticleList();
     public CartBean computeTotalPrice (CartBean cart);
     public void updateListArticles(CartBean cart);
+    public void deconnexion(CartBean cart);
 
 }
