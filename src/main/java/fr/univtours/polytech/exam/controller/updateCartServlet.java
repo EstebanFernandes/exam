@@ -1,10 +1,8 @@
 package fr.univtours.polytech.exam.controller;
 
 import java.io.IOException;
-import java.util.List;
 
-import fr.univtours.polytech.exam.dao.ArticleDAO;
-import fr.univtours.polytech.exam.model.ArticleBean;
+import fr.univtours.polytech.exam.business.StoreBusiness;
 import fr.univtours.polytech.exam.model.CartBean;
 import jakarta.inject.Inject;
 import jakarta.servlet.RequestDispatcher;
@@ -14,11 +12,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "displayArticlesServlet", urlPatterns = { "/articles" })
-public class displayArticlesServlet extends HttpServlet {
-
+@WebServlet(name = "displayArticlesServlet", urlPatterns = { "/updateCart" })
+public class updateCartServlet extends HttpServlet {
     @Inject
-    private ArticleDAO articleDAO;
+    private StoreBusiness business;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,21 +32,20 @@ public class displayArticlesServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                System.out.println("doPost DisplayArticles");
         CartBean cart = (CartBean) request.getSession().getAttribute("CART_USER");
-        
         if (cart == null) {
-            System.out.println("cart null");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE1.jsp");
-            dispatcher.forward(request, response);
-        } else {
-            List<ArticleBean> temp = articleDAO.getArticlesList();
-            System.out.println("pas nul");
-            for (ArticleBean article : temp) {
-                cart.getArticlesKeep().put(article, 0);
+            if (request.getAttribute("buttonMinus") != null) {
+                int idArticle = (int) request.getAttribute("buttonMinus");
+                business.removeOneArticle(cart, idArticle);
+            } else {
+                int idArticle = (int) request.getAttribute("buttonPlus");
+                business.addOneArticle(cart, idArticle);
             }
             request.getSession().setAttribute("CART_USER", cart);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE2.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("articles");
+            dispatcher.forward(request, response);
+        } else {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE1.jsp");
             dispatcher.forward(request, response);
         }
     }

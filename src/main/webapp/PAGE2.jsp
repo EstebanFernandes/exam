@@ -9,13 +9,6 @@
         </head>
 
         <body>
-            <h1>Affichage des notes :</h1>
-            <form action="addNote" method="get">
-                <button name="button" value="">Ajouter une note</button>
-            </form>
-            <c:if test="${not empty requestScope.RESULTS_MEAN}">
-                La moyenne est de ${requestScope.RESULTS_MEAN}
-            </c:if>
             <fieldset>
                 <legend>Liste des Articles</legend>
                 <table>
@@ -37,20 +30,20 @@
                             <td> </td>
                             <td>
                                 <form action="updateCart" method="post">
-                                    <button type="submit" name="button" value="minus">-</button>
+                                    <button type="submit" name="buttonMinus" value=${entry.key.id}>-</button>
                                 </form>
                             </td>
                             <td> ${entry.value}</td>
                             <td>
                                 <form action="updateCart" method="post">
-                                    <button type="submit" name="button" value="plus">+</button>
+                                    <button type="submit" name="buttonPlus" value=${entry.key.id}>+</button>
                                 </form>
                             </td>
                         </tr>
                     </c:forEach>
                 </table>
             </fieldset>
-            <form action="displayCart" method="get">
+            <form action="cart" method="get">
                 <button name="button" value="">Afficher le panier</button>
             </form>
         </body>

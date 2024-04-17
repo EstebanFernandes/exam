@@ -32,6 +32,7 @@ public class ConnexionServlet extends HttpServlet {
         if (!userDAO.checkUser(login, password)) {
             HttpSession mySession = request.getSession();
             mySession.setAttribute("CART_USER",cart);
+            System.out.println("C'est bon, on renvoie vers les articles");
             RequestDispatcher dispatcher = request.getRequestDispatcher("articles");
             dispatcher.forward(request, response);
 
