@@ -29,13 +29,13 @@
                             <td>${entry.key.nbRestant}</td>
                             <td> </td>
                             <td>
-                                <form action="updateCart" method="post">
+                                <form method="post" action="updateCart">
                                     <button type="submit" name="buttonMinus" value=${entry.key.id}>-</button>
                                 </form>
                             </td>
                             <td> ${entry.value}</td>
                             <td>
-                                <form action="updateCart" method="post">
+                                <form method="post" action="updateCart">
                                     <button type="submit" name="buttonPlus" value=${entry.key.id}>+</button>
                                 </form>
                             </td>

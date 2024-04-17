@@ -33,8 +33,7 @@ public class ConnexionServlet extends HttpServlet {
             HttpSession mySession = request.getSession();
             mySession.setAttribute("CART_USER",cart);
             System.out.println("C'est bon, on renvoie vers les articles");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("articles");
-            dispatcher.forward(request, response);
+            response.sendRedirect("articles");
 
         } else {
             request.setAttribute("notConnected", true);

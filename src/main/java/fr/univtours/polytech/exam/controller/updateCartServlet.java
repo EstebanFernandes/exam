@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "displayArticlesServlet", urlPatterns = { "/updateCart" })
+@WebServlet(name = "updateCartServlet", urlPatterns = { "/updateCart" })
 public class updateCartServlet extends HttpServlet {
     @Inject
     private StoreBusiness business;
@@ -24,8 +24,7 @@ public class updateCartServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE1.jsp");
             dispatcher.forward(request, response);
         } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE2.jsp");
-            dispatcher.forward(request, response);
+            response.sendRedirect("articles");
         }
     }
 
@@ -33,17 +32,16 @@ public class updateCartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         CartBean cart = (CartBean) request.getSession().getAttribute("CART_USER");
-        if (cart == null) {
-            if (request.getAttribute("buttonMinus") != null) {
-                int idArticle = (int) request.getAttribute("buttonMinus");
+        if (cart != null) {
+            if (request.getParameter("buttonMinus") != null) {
+                int idArticle = Integer.parseInt(request.getParameter("buttonMinus"));
                 business.removeOneArticle(cart, idArticle);
             } else {
-                int idArticle = (int) request.getAttribute("buttonPlus");
+                int idArticle = Integer.parseInt(request.getParameter("buttonPlus"));
                 business.addOneArticle(cart, idArticle);
             }
             request.getSession().setAttribute("CART_USER", cart);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("articles");
-            dispatcher.forward(request, response);
+            response.sendRedirect("articles");
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE1.jsp");
             dispatcher.forward(request, response);
