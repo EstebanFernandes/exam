@@ -8,16 +8,18 @@ public class CartBean implements Serializable {
     // Cette map nous permet d'associer un id d'article à une quantité
     private Map<ArticleBean, Integer> articlesKeep = new HashMap<ArticleBean, Integer>();
     // On garde aussi l'id de l'utilisateur
-    private UserBean currentuser;
+    private UserBean currentUser;
     // Le prix total du panier
-    private float TotalPrice;
+    private float totalPrice;
+
+
 
     public float getTotalPrice() {
-        return TotalPrice;
+        return totalPrice;
     }
 
     public void setTotalPrice(float totalPrice) {
-        TotalPrice = totalPrice;
+        this.totalPrice = totalPrice;
     }
 
     public Map<ArticleBean, Integer> getArticlesKeep() {
@@ -29,11 +31,11 @@ public class CartBean implements Serializable {
     }
 
     public UserBean getCurrentUser() {
-        return currentuser;
+        return currentUser;
     }
 
     public void setUser(UserBean user) {
-        currentuser = user;
+        currentUser = user;
     }
 
     public Integer getNbById(int id) {

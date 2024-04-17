@@ -32,9 +32,14 @@
                         </c:forEach>
                     </tbody>
                 </table>
+                <div style="margin-top: 20px; text-align: left;">
+                    <p style="font-weight: bold;">Prix total du panier : ${sessionScope.CART_USER.totalPrice} euros</p>
+                </div>
             </fieldset>
 
-            <<div style="margin-top: 20px; text-align: center;">
+        
+
+            <div style="margin-top: 20px; text-align: center;">
                 <form action="cart" method="get" style="display: inline-block; margin-right: 30px;">
                     <button
                         style="padding: 10px 20px; background-color: #ff1100; color: #fff; border: none; border-radius: 6px; cursor: pointer;">Payer</button>
@@ -43,7 +48,7 @@
                     <button type="submit"
                         style="padding: 10px 20px; background-color: #ccc; color: #333; border: none; border-radius: 4px; cursor: pointer;">Retour</button>
                 </form>
-                </div>
+            </div>
 
         </body>
 
