@@ -48,10 +48,7 @@ public class DisplayArticlesServlet extends HttpServlet {
             dispatcher.forward(request, response);
         } else {
             List<ArticleBean> temp = articleDAO.getArticlesList();
-<<<<<<< HEAD
 
-=======
->>>>>>> 2b0e2857a9d11f0f53e4ba63aad3d05d53b865e9
             for (ArticleBean article : temp) {
                 cart.getArticlesKeep().put(article, 0);
             }
