@@ -2,3 +2,6 @@
 .project
 .settings/
 target/
+target/classes/fr/univtours/polytech/exam/dao/ArticleDAO.class
+target/classes/fr/univtours/polytech/exam/dao/ArticleDAO.class
+target/classes/fr/univtours/polytech/exam/dao/ArticleDAOImpl.class
