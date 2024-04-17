@@ -39,6 +39,7 @@ public class DisplayArticlesServlet extends HttpServlet {
             } else {
                 business.updateListArticles(cart);
             }
+            request.getSession().setAttribute("CART_USER", cart);
             RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE2.jsp");
             dispatcher.forward(request, response);
         }

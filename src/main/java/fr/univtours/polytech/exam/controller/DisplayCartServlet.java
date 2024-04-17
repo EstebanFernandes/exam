@@ -19,6 +19,7 @@ public class DisplayCartServlet extends HttpServlet {
     private ArticleDAO articleDAO;
     private CartBean cart;
 
+    @SuppressWarnings("unused")
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         CartBean cart = (CartBean) request.getSession().getAttribute("CART_USER");
