@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet(name = "connexionServlet", urlPatterns = { "/connexion" })
 public class ConnexionServlet extends HttpServlet {
@@ -29,7 +30,8 @@ public class ConnexionServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         if (userDAO.checkUser(login, password)) {
-            //cart.setIdUser();
+            HttpSession mySession = request.getSession();
+            mySession.setAttribute("CART_USER",cart);
             RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE2.jsp");
             dispatcher.forward(request, response);
 
