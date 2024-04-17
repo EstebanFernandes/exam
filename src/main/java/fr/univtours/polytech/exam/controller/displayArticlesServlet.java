@@ -13,7 +13,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 @WebServlet(name = "displayArticlesServlet", urlPatterns = { "/articles" })
 public class DisplayArticlesServlet extends HttpServlet {
@@ -33,7 +32,7 @@ public class DisplayArticlesServlet extends HttpServlet {
                 cart.getArticlesKeep().put(article, 0);
                 System.out.println(article.getName());
             }
-            request.getSession().setAttribute("CART_USER",cart);
+            request.getSession().setAttribute("CART_USER", cart);
             RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE2.jsp");
             dispatcher.forward(request, response);
         }
@@ -42,7 +41,7 @@ public class DisplayArticlesServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                CartBean cart = (CartBean) request.getSession().getAttribute("CART_USER");
+        CartBean cart = (CartBean) request.getSession().getAttribute("CART_USER");
         if (cart == null) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE1.jsp");
             dispatcher.forward(request, response);

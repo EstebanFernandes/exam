@@ -30,16 +30,16 @@ public class ConnexionServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         if (!userDAO.checkUser(login, password)) {
+            // Ajouter l'utilisateur à la session
             HttpSession mySession = request.getSession();
-            mySession.setAttribute("CART_USER",cart);
-            System.out.println("C'est bon, on renvoie vers les articles");
+            mySession.setAttribute("CART_USER", cart);
+            // Rediriger vers la page "articles"
             response.sendRedirect("articles");
-
         } else {
+            // Utilisateur incorrect, continuer à afficher la page de connexion
             request.setAttribute("notConnected", true);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("connexion");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE1.jsp");
             dispatcher.forward(request, response);
         }
     }
-
 }
