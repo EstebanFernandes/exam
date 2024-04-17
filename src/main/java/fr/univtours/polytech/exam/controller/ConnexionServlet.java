@@ -36,7 +36,7 @@ public class ConnexionServlet extends HttpServlet {
             HttpSession mySession = request.getSession();
             mySession.setAttribute("CART_USER", cart);
             user = userDAO.getUserByLogin(login);
-            cart.setCurrentuser(user);
+            cart.setCurrentUser(user);
             // Rediriger vers la page "articles"
             response.sendRedirect("articles");
         } else {

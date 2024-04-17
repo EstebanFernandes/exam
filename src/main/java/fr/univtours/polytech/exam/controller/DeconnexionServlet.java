@@ -23,9 +23,11 @@ public class DeconnexionServlet extends HttpServlet{
             RequestDispatcher dispatcher = request.getRequestDispatcher("connexion");
             dispatcher.forward(request, response);
         } else {
-            if(cart.getCurrentuser()!=null)
+            if(cart.getCurrentUser()!=null)
             {
                 business.deconnexion(cart);
+                if(request.getSession()!=null)
+                request.getSession().invalidate();
             }
             response.sendRedirect("connexion");
         }

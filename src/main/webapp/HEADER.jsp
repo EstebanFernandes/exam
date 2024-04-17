@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <h1>Bonjour ${sessionScope.CART_USER.currentuser.name}</h1>
+        <h1>Bonjour ${sessionScope.CART_USER.currentUser.name}</h1>
         <form action="deconnexion" method="get" style="display: inline-block; margin-right: 30px;">
             <button
                 style="padding: 10px 20px; background-color: #007bff; color: #fff; border: none; border-radius: 6px; cursor: pointer;">Déconnexion</button>

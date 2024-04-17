@@ -51,6 +51,7 @@ public class StoreBusinessImpl implements StoreBusiness {
     public CartBean computeTotalPrice(CartBean cart) {
         // On itère sur la map, la clé correspond à l'id de l'article, la valeur
         // correspond à la quantité
+        cart.setTotalPrice(0);
         for (Map.Entry<ArticleBean, Integer> entry : cart.getArticlesKeep().entrySet()) {
             float price = entry.getKey().getPrice().floatValue() * (float) entry.getValue();
             cart.setTotalPrice(cart.getTotalPrice() + price);
@@ -69,7 +70,8 @@ public class StoreBusinessImpl implements StoreBusiness {
     public void deconnexion(CartBean cart) {
         for(var entry : cart.getArticlesKeep().entrySet())
         {
-            for(int i=0;i<entry.getValue();i++)
+            int nbPris = entry.getValue();
+            for(int i=0;i<nbPris;i++)
             {
                 removeOneArticle(cart, entry.getKey().getId());
             }

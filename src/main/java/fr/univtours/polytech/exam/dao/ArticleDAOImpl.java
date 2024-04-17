@@ -22,10 +22,10 @@ public class ArticleDAOImpl implements ArticleDAO {
     @Override
     public void updateArticle(ArticleBean article) {
         Query query = em.createQuery(
-      "UPDATE ARTICLE SET nbRestant = :nb , price = :pr, name = :na " +
-      "WHERE id = :id");
-  int updateCount = query.setParameter("nb",article.getNbRestant()).setParameter("pr", article.getPrice())
-  .setParameter("na", article.getName()).setParameter("id", article.getId()).executeUpdate();
+                "UPDATE ARTICLE SET nbRestant = :nb , price = :pr, name = :na " +
+                        "WHERE id = :id");
+        int updateCount = query.setParameter("nb", article.getNbRestant()).setParameter("pr", article.getPrice())
+                .setParameter("na", article.getName()).setParameter("id", article.getId()).executeUpdate();
     }
 
     @Override
@@ -33,3 +33,4 @@ public class ArticleDAOImpl implements ArticleDAO {
         return em.find(ArticleBean.class, id);
     }
 }
+
