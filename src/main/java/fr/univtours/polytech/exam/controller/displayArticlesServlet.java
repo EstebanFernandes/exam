@@ -3,7 +3,6 @@ package fr.univtours.polytech.exam.controller;
 import java.io.IOException;
 
 import fr.univtours.polytech.exam.dao.ArticleDAO;
-import fr.univtours.polytech.exam.dao.ArticleDAOImpl;
 import fr.univtours.polytech.exam.model.ArticleBean;
 import fr.univtours.polytech.exam.model.CartBean;
 import jakarta.inject.Inject;
