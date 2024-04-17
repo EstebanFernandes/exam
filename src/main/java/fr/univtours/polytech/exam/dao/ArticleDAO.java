@@ -1,6 +1,11 @@
 package fr.univtours.polytech.exam.dao;
 
-public interface ArticleDAO {
+import java.util.List;
 
+import fr.univtours.polytech.exam.model.ArticleBean;
+
+public interface ArticleDAO {
+    public List<ArticleBean> getArticlesList();
+    
     
 } 
