@@ -35,6 +35,9 @@ public class updateCartServlet extends HttpServlet {
         if (cart != null) {
             if (request.getParameter("buttonMinus") != null) {
                 int idArticle = Integer.parseInt(request.getParameter("buttonMinus"));
+                for (var entry : cart.getArticlesKeep().entrySet()) {
+                    System.out.println(entry.getKey().getName());
+                }
                 business.removeOneArticle(cart, idArticle);
             } else {
                 int idArticle = Integer.parseInt(request.getParameter("buttonPlus"));

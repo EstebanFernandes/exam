@@ -20,10 +20,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     public UserBean getUserByLogin(String login) {
-        Query requete = em.createQuery("SELECT * FROM user WHERE login = ?", UserBean.class);
-        requete.setParameter(1, login);
+
+        UserBean user = em.find(UserBean.class, login);
+        System.out.println(user.getName());
         try {
-            return (UserBean) requete.getSingleResult();
+            return user;
         } catch (Exception e) {
             return null; // return null if no user found
         }

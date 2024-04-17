@@ -27,10 +27,12 @@ public class DisplayArticlesServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("connexion");
             dispatcher.forward(request, response);
         } else {
-            List<ArticleBean> temp = articleDAO.getArticlesList();
-            for (ArticleBean article : temp) {
-                cart.getArticlesKeep().put(article, 0);
-                System.out.println(article.getName());
+            if (cart.getArticlesKeep().size() == 0) {
+                List<ArticleBean> temp = articleDAO.getArticlesList();
+                for (ArticleBean article : temp) {
+                    cart.getArticlesKeep().put(article, 0);
+                    System.out.println(article.getName());
+                }
             }
             request.getSession().setAttribute("CART_USER", cart);
             RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE2.jsp");

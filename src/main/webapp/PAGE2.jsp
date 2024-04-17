@@ -5,47 +5,67 @@
 
         <head>
             <meta charset="UTF-8">
-            <title>Articles </title>
+            <title>Articles</title>
         </head>
 
-        <body>
-            <fieldset>
-                <legend>Liste des Articles</legend>
-                <table>
-                    <tr>
-                        <th scope="col">Nom</th>
-                        <th scope="col">Prix</th>
-                        <th scope="col">Restant</th>
-                        <th scope="col"> </th>
-                        <th scope="col">Enlever 1 au panier</th>
-                        <th scope="col">Actuellement dans votre panier</th>
-                        <th scope="col">Ajouter 1 au panier</th>
+        <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
 
-                    </tr>
-                    <c:forEach items="${sessionScope.CART_USER.articlesKeep}" var="entry">
-                        <tr>
-                            <td>${entry.key.name}</td>
-                            <td>${entry.key.price}</td>
-                            <td>${entry.key.nbRestant}</td>
-                            <td> </td>
-                            <td>
-                                <form method="post" action="updateCart">
-                                    <button type="submit" name="buttonMinus" value=${entry.key.id}>-</button>
-                                </form>
-                            </td>
-                            <td> ${entry.value}</td>
-                            <td>
-                                <form method="post" action="updateCart">
-                                    <button type="submit" name="buttonPlus" value=${entry.key.id}>+</button>
-                                </form>
-                            </td>
+            <h1 style="text-align: center;">Liste des Articles</h1>
+
+            <fieldset
+                style="border: 1px solid #ccc; border-radius: 8px; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                <legend style="font-weight: bold; color: #333;">Bonjour ${sessionScope.CART_USER.currentuser.name}
+                </legend>
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background-color: #007bff; color: #fff;">
+                            <th style="border: 1px solid #ccc; padding: 10px;">Nom</th>
+                            <th style="border: 1px solid #ccc; padding: 10px;">Prix</th>
+                            <th style="border: 1px solid #ccc; padding: 10px;">Restant</th>
+                            <th style="border: 1px solid #ccc; padding: 10px;"></th>
+                            <th style="border: 1px solid #ccc; padding: 10px;">Enlever 1 au panier</th>
+                            <th style="border: 1px solid #ccc; padding: 10px;">Actuellement dans votre panier</th>
+                            <th style="border: 1px solid #ccc; padding: 10px;">Ajouter 1 au panier</th>
                         </tr>
-                    </c:forEach>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${sessionScope.CART_USER.articlesKeep}" var="entry">
+                            <tr>
+                                <td style="border: 1px solid #ccc; padding: 10px;">${entry.key.name}</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">${entry.key.price}</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">${entry.key.nbRestant}</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;"></td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">
+                                    <form method="post" action="updateCart">
+                                        <button type="submit" name="buttonMinus" value="${entry.key.id}"
+                                            style="padding: 5px 10px; background-color: #ff1100; color: #fff; border: none; border-radius: 4px; cursor: pointer;">-</button>
+                                    </form>
+                                </td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">${entry.value}</td>
+                                <td style="border: 1px solid #ccc; padding: 10px;">
+                                    <form method="post" action="updateCart">
+                                        <button type="submit" name="buttonPlus" value="${entry.key.id}"
+                                            style="padding: 5px 10px; background-color: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer;">+</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
                 </table>
             </fieldset>
-            <form action="cart" method="get">
-                <button name="button" value="">Afficher le panier</button>
-            </form>
+
+            <div style="margin-top: 20px; text-align: center;">
+                <form action="cart" method="get" style="display: inline-block; margin-right: 30px;">
+                    <button
+                        style="padding: 10px 20px; background-color: #007bff; color: #fff; border: none; border-radius: 6px; cursor: pointer;">Afficher
+                        le panier</button>
+                </form>
+                <form action="articles" method="get" style="display: inline-block;">
+                    <button
+                        style="padding: 10px 20px; background-color: #ccc; color: #333; border: none; border-radius: 4px; cursor: pointer;">Retour</button>
+                </form>
+            </div>
+
         </body>
 
         </html>

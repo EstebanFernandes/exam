@@ -18,7 +18,7 @@ public class StoreBusinessImpl implements StoreBusiness {
         ArticleBean article = articleDAO.getArticle(idArticle);
         // Ensuite on regarde s'il reste des articles en stock
         if (article.getNbRestant() >= 1) {
-            Integer value = cart.getArticlesKeep().get(article);
+            Integer value = cart.getNbById(idArticle);
             cart.getArticlesKeep().put(article, value + 1);
             article.setNbRestant(article.getNbRestant() - 1);
             articleDAO.updateArticle(article);
@@ -30,11 +30,12 @@ public class StoreBusinessImpl implements StoreBusiness {
     @Override
     public boolean removeOneArticle(CartBean cart, int idArticle) {
         ArticleBean article = articleDAO.getArticle(idArticle);
+        System.out.println("item à supprimer"+article.getName());  
         if (!cart.getArticlesKeep().containsKey(article)) {
             return false;
         }
-        Integer value = cart.getArticlesKeep().get(article);
-        cart.getArticlesKeep().put(article, value + 1);
+    
+        cart.setNbById(idArticle, cart.getNbById(idArticle)+1);
         article.setNbRestant(article.getNbRestant() - 1);
         articleDAO.updateArticle(article);
         return true;

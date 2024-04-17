@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import fr.univtours.polytech.exam.dao.UserDAO;
 import fr.univtours.polytech.exam.model.CartBean;
+import fr.univtours.polytech.exam.model.UserBean;
 import jakarta.inject.Inject;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -17,6 +18,7 @@ import jakarta.servlet.http.HttpSession;
 public class ConnexionServlet extends HttpServlet {
     @Inject
     private UserDAO userDAO;
+    private UserBean user = new UserBean();
     private CartBean cart = new CartBean();
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,6 +35,8 @@ public class ConnexionServlet extends HttpServlet {
             // Ajouter l'utilisateur à la session
             HttpSession mySession = request.getSession();
             mySession.setAttribute("CART_USER", cart);
+            user = userDAO.getUserByLogin(login);
+            cart.setUser(user);
             // Rediriger vers la page "articles"
             response.sendRedirect("articles");
         } else {
