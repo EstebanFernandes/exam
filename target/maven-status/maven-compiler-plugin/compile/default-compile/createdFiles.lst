@@ -1,0 +1,5 @@
+fr\univtours\polytech\exam\model\UserBean.class
+fr\univtours\polytech\exam\resources\JakartaEE10Resource.class
+fr\univtours\polytech\exam\controller\ExampleServlet.class
+fr\univtours\polytech\exam\model\ArticleBean.class
+fr\univtours\polytech\exam\JakartaRestConfiguration.class
