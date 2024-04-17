@@ -14,12 +14,24 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+/**
+ * Servlet pour afficher la liste des articles disponibles dans le magasin.
+ */
 @WebServlet(name = "displayArticlesServlet", urlPatterns = { "/articles" })
 public class DisplayArticlesServlet extends HttpServlet {
 
     @Inject
     private StoreBusiness business;
 
+    /**
+     * Méthode pour gérer la requête GET.
+     * Affiche la liste des articles et met à jour le panier de l'utilisateur.
+     * 
+     * @param request   requête HTTP.
+     * @param response  réponse HTTP.
+     * @throws ServletException 
+     * @throws IOException      
+     */
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         CartBean cart = (CartBean) request.getSession().getAttribute("CART_USER");
@@ -41,6 +53,15 @@ public class DisplayArticlesServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Méthode pour gérer la requête POST.
+     * Réinitialise le panier de l'utilisateur avec la liste des articles.
+     * 
+     * @param request  requête HTTP.
+     * @param response réponse HTTP.
+     * @throws ServletException .
+     * @throws IOException      
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
