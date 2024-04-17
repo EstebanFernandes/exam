@@ -11,5 +11,6 @@ public interface StoreBusiness {
     public boolean removeOneArticle(CartBean cart,int idArticle);
 
     public List<ArticleBean> getArticleList();
+    public CartBean computeTotalPrice (CartBean cart);
 
 }
