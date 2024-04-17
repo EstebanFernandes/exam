@@ -29,7 +29,7 @@ public class ConnexionServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        if (userDAO.checkUser(login, password)) {
+        if (!userDAO.checkUser(login, password)) {
             HttpSession mySession = request.getSession();
             mySession.setAttribute("CART_USER",cart);
             RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE2.jsp");
