@@ -1,6 +1,7 @@
 package fr.univtours.polytech.exam.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import fr.univtours.polytech.exam.dao.ArticleDAO;
 import fr.univtours.polytech.exam.model.ArticleBean;
@@ -18,6 +19,7 @@ public class DisplayArticlesServlet extends HttpServlet {
 
     @Inject
     private ArticleDAO articleDAO;
+
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         CartBean cart = (CartBean) request.getSession().getAttribute("CART_USER");
@@ -38,10 +40,12 @@ public class DisplayArticlesServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE1.jsp");
             dispatcher.forward(request, response);
         } else {
-        for(ArticleBean article : articleDAO.getArticlesList())
-        {
-            cart.getArticlesKeep().put(article,0);
-        }
+            List<ArticleBean> temp = articleDAO.getArticlesList();
+            
+            for (ArticleBean article : temp) {
+                cart.getArticlesKeep().put(article, 0);
+            }
+            request.getSession().setAttribute("CART_USER", cart);
             RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE2.jsp");
             dispatcher.forward(request, response);
         }
