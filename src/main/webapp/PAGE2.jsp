@@ -50,7 +50,7 @@
                     </c:forEach>
                 </table>
             </fieldset>
-            <form action="displayCart" method="get">
+            <form action="cart" method="get">
                 <button name="button" value="">Afficher le panier</button>
             </form>
         </body>
