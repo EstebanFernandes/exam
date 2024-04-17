@@ -3,6 +3,7 @@ package fr.univtours.polytech.exam.controller;
 import java.io.IOException;
 import java.util.List;
 
+import fr.univtours.polytech.exam.business.StoreBusiness;
 import fr.univtours.polytech.exam.dao.ArticleDAO;
 import fr.univtours.polytech.exam.model.ArticleBean;
 import fr.univtours.polytech.exam.model.CartBean;
@@ -13,13 +14,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 @WebServlet(name = "displayArticlesServlet", urlPatterns = { "/articles" })
 public class DisplayArticlesServlet extends HttpServlet {
 
     @Inject
     private ArticleDAO articleDAO;
+    @Inject 
+    private StoreBusiness business;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,6 +36,8 @@ public class DisplayArticlesServlet extends HttpServlet {
                     cart.getArticlesKeep().put(article, 0);
                     System.out.println(article.getName());
                 }
+            } else {
+                business.updateListArticles(cart);
             }
             RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE2.jsp");
             dispatcher.forward(request, response);

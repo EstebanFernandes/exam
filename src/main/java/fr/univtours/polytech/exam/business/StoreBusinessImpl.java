@@ -19,8 +19,9 @@ public class StoreBusinessImpl implements StoreBusiness {
         // Ensuite on regarde s'il reste des articles en stock
         if (article.getNbRestant() >= 1) {
             Integer value = cart.getNbById(idArticle);
-            cart.getArticlesKeep().put(article, value + 1);
-            article.setNbRestant(article.getNbRestant() - 1);
+            cart.setNbById(idArticle, value+1);
+            Integer ancInteger= article.getNbRestant();
+            article.setNbRestant(ancInteger - 1);
             articleDAO.updateArticle(article);
             return true;
         }
@@ -30,15 +31,15 @@ public class StoreBusinessImpl implements StoreBusiness {
     @Override
     public boolean removeOneArticle(CartBean cart, int idArticle) {
         ArticleBean article = articleDAO.getArticle(idArticle);
-        System.out.println("item à supprimer"+article.getName());  
-        if (!cart.getArticlesKeep().containsKey(article)) {
-            return false;
+        int qtPrise = cart.getNbById(idArticle);
+        if(qtPrise!=0)
+        {
+            cart.setNbById(idArticle, qtPrise-1);
+            article.setNbRestant(article.getNbRestant() + 1);
+            articleDAO.updateArticle(article);
+            return true;
         }
-    
-        cart.setNbById(idArticle, cart.getNbById(idArticle)+1);
-        article.setNbRestant(article.getNbRestant() - 1);
-        articleDAO.updateArticle(article);
-        return true;
+        return false;
     }
 
     @Override
@@ -55,6 +56,13 @@ public class StoreBusinessImpl implements StoreBusiness {
             cart.setTotalPrice(cart.getTotalPrice() + price);
         }
         return cart;
+    }
+
+    public void updateListArticles(CartBean cart){
+        for(var entry : cart.getArticlesKeep().entrySet())
+        {
+            entry.getKey().setNbRestant(articleDAO.getArticle(entry.getKey().getId()).getNbRestant());
+        }
     }
 
 }
