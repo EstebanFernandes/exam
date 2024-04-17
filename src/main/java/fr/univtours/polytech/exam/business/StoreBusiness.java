@@ -3,11 +3,12 @@ package fr.univtours.polytech.exam.business;
 import java.util.List;
 
 import fr.univtours.polytech.exam.model.ArticleBean;
+import fr.univtours.polytech.exam.model.CartBean;
 
 public interface StoreBusiness {
-    public boolean addOneArticle(int idArticle);
+    public boolean addOneArticle(CartBean cart,int idArticle);
 
-    public boolean removeOneArticle(int idArticle);
+    public boolean removeOneArticle(CartBean cart,int idArticle);
 
     public List<ArticleBean> getArticleList();
 

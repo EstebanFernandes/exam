@@ -6,6 +6,6 @@ import fr.univtours.polytech.exam.model.ArticleBean;
 
 public interface ArticleDAO {
     public List<ArticleBean> getArticlesList();
-    
-    
-} 
+
+    public void updateArticle(ArticleBean article);
+}
