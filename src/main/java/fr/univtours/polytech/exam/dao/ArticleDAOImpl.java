@@ -14,16 +14,16 @@ public class ArticleDAOImpl implements ArticleDAO {
     private EntityManager em;
 
     public List<ArticleBean> getArticlesList() {
-        //On crée une requête afin de récupérer la liste des article présent en BDD
+        // On crée une requête afin de récupérer la liste des article présent en BDD
         Query requete = em.createNativeQuery("select * from ARTICLE", ArticleBean.class);
         return requete.getResultList();
     }
 
     @Override
     public void updateArticle(ArticleBean article) {
-       
+
         em.getTransaction().begin();
-        ArticleBean articleToUpdate = em.find(ArticleBean.class,article.getId());
+        ArticleBean articleToUpdate = em.find(ArticleBean.class, article.getId());
         articleToUpdate = article;
         em.getTransaction().commit();
         em.close();
