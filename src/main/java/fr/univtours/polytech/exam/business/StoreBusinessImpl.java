@@ -19,9 +19,9 @@ public class StoreBusinessImpl implements StoreBusiness {
     public boolean addOneArticle(CartBean cart, int idArticle) {
         Integer id = idArticle;
         if (cart.getArticlesKeep().get(id) != null) {
-            // Si l'article est présent, on doit regarder si on peut ajouter, donc s'il reste 
-                                                     
-                                                
+            // Si l'article est présent, on doit regarder si on peut ajouter, donc s'il
+            // reste
+
         } else {
             cart.getArticlesKeep().put(id, 1);
         }
