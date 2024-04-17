@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "displayArticlesServlet", urlPatterns = { "/articles" })
-public class displayArticlesServlet extends HttpServlet {
+public class DisplayArticlesServlet extends HttpServlet {
 
     @Inject
     private ArticleDAO articleDAO;
