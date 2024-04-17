@@ -3,8 +3,6 @@ package fr.univtours.polytech.exam.model;
 import java.io.Serializable;
 import java.util.Map;
 
-import fr.univtours.polytech.exam.dao.ArticleDAO;
-import fr.univtours.polytech.exam.dao.ArticleDAOImpl;
 
 public class CartBean implements Serializable {
     // Cette map nous permet d'associer un id d'article à une quantité
