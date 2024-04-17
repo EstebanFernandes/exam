@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import fr.univtours.polytech.exam.business.StoreBusiness;
-import fr.univtours.polytech.exam.dao.ArticleDAO;
 import fr.univtours.polytech.exam.model.ArticleBean;
 import fr.univtours.polytech.exam.model.CartBean;
 import jakarta.inject.Inject;
@@ -19,8 +18,6 @@ import jakarta.servlet.http.HttpServletResponse;
 public class DisplayArticlesServlet extends HttpServlet {
 
     @Inject
-    private ArticleDAO articleDAO;
-    @Inject 
     private StoreBusiness business;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -30,7 +27,7 @@ public class DisplayArticlesServlet extends HttpServlet {
             response.sendRedirect("connexion");
         } else {
             if (cart.getArticlesKeep().size() == 0) {
-                List<ArticleBean> temp = articleDAO.getArticlesList();
+                List<ArticleBean> temp = business.getArticleList();
                 for (ArticleBean article : temp) {
                     cart.getArticlesKeep().put(article, 0);
                     System.out.println(article.getName());
@@ -52,7 +49,7 @@ public class DisplayArticlesServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("PAGE1.jsp");
             dispatcher.forward(request, response);
         } else {
-            List<ArticleBean> temp = articleDAO.getArticlesList();
+            List<ArticleBean> temp = business.getArticleList();
 
             for (ArticleBean article : temp) {
                 cart.getArticlesKeep().put(article, 0);

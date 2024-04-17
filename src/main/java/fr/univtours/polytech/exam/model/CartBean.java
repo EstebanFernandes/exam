@@ -12,8 +12,6 @@ public class CartBean implements Serializable {
     // Le prix total du panier
     private float totalPrice;
 
-
-
     public float getTotalPrice() {
         return totalPrice;
     }
@@ -34,8 +32,6 @@ public class CartBean implements Serializable {
         return currentUser;
     }
 
-
-
     public Integer getNbById(int id) {
         for (var entry : articlesKeep.entrySet()) {
             if (entry.getKey().getId() == id)
@@ -43,8 +39,8 @@ public class CartBean implements Serializable {
         }
         return null;
     }
-    public void setNbById(int id,int nb)
-    {
+
+    public void setNbById(int id, int nb) {
         for (var entry : articlesKeep.entrySet()) {
             if (entry.getKey().getId() == id)
                 entry.setValue(nb);

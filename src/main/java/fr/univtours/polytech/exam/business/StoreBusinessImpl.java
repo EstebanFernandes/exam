@@ -4,14 +4,18 @@ import java.util.List;
 import java.util.Map;
 
 import fr.univtours.polytech.exam.dao.ArticleDAO;
+import fr.univtours.polytech.exam.dao.UserDAO;
 import fr.univtours.polytech.exam.model.ArticleBean;
 import fr.univtours.polytech.exam.model.CartBean;
+import fr.univtours.polytech.exam.model.UserBean;
 import jakarta.inject.Inject;
 
 public class StoreBusinessImpl implements StoreBusiness {
 
     @Inject
     private ArticleDAO articleDAO;
+    @Inject
+    private UserDAO userDAO;
 
     @Override
     public boolean addOneArticle(CartBean cart, int idArticle) {
@@ -78,6 +82,16 @@ public class StoreBusinessImpl implements StoreBusiness {
         }
         cart= null;
 
+    }
+
+    @Override
+    public boolean checkUser(String login, String password) {
+        return userDAO.checkUser(login, password);
+    }
+
+    @Override
+    public UserBean getUserByLogin(String login) {
+        return userDAO.getUserByLogin(login);
     }
 
 }

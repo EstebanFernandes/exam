@@ -33,4 +33,3 @@ public class ArticleDAOImpl implements ArticleDAO {
         return em.find(ArticleBean.class, id);
     }
 }
-

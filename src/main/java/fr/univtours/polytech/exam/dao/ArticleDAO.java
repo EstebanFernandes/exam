@@ -8,5 +8,6 @@ public interface ArticleDAO {
     public List<ArticleBean> getArticlesList();
 
     public void updateArticle(ArticleBean article);
+
     public ArticleBean getArticle(int id);
 }

@@ -11,9 +11,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 @WebServlet(name = "DeonnexionServlet", urlPatterns = { "/deconnexion" })
-public class DeconnexionServlet extends HttpServlet{
-    @Inject 
+public class DeconnexionServlet extends HttpServlet {
+    @Inject
     private StoreBusiness business;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -23,11 +24,10 @@ public class DeconnexionServlet extends HttpServlet{
             RequestDispatcher dispatcher = request.getRequestDispatcher("connexion");
             dispatcher.forward(request, response);
         } else {
-            if(cart.getCurrentUser()!=null)
-            {
+            if (cart.getCurrentUser() != null) {
                 business.deconnexion(cart);
-                if(request.getSession()!=null)
-                request.getSession().invalidate();
+                if (request.getSession() != null)
+                    request.getSession().invalidate();
             }
             response.sendRedirect("connexion");
         }

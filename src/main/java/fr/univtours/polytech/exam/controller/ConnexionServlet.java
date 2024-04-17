@@ -2,7 +2,7 @@ package fr.univtours.polytech.exam.controller;
 
 import java.io.IOException;
 
-import fr.univtours.polytech.exam.dao.UserDAO;
+import fr.univtours.polytech.exam.business.StoreBusiness;
 import fr.univtours.polytech.exam.model.CartBean;
 import fr.univtours.polytech.exam.model.UserBean;
 import jakarta.inject.Inject;
@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet(name = "connexionServlet", urlPatterns = { "/connexion" })
 public class ConnexionServlet extends HttpServlet {
     @Inject
-    private UserDAO userDAO;
+    private StoreBusiness business;
     private UserBean user = new UserBean();
     private CartBean cart = new CartBean();
 
@@ -31,11 +31,11 @@ public class ConnexionServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        if (!userDAO.checkUser(login, password)) {
+        if (!business.checkUser(login, password)) {
             // Ajouter l'utilisateur à la session
             HttpSession mySession = request.getSession();
             mySession.setAttribute("CART_USER", cart);
-            user = userDAO.getUserByLogin(login);
+            user = business.getUserByLogin(login);
             cart.setCurrentUser(user);
             // Rediriger vers la page "articles"
             response.sendRedirect("articles");
